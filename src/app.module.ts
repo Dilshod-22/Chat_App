@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GroupModule } from './group/group.module';
+import { GroupMemberController } from './group-member/group-member.controller';
 
 @Module({
   imports: [
@@ -11,7 +12,7 @@ import { GroupModule } from './group/group.module';
     UserModule,
     GroupModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, GroupMemberController],
   providers: [AppService],
 })
 export class AppModule {}

@@ -82,6 +82,7 @@ async deleteGroup(id: string): Promise<Group> {
         );
         throw new InternalServerErrorException('Failed to delete group');
     }
+    
 }
 
     
