@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { MemberController } from './member.controller';
-import { MemberService } from './member.service';
+import { GroupMemberController } from './member.controller';
+import { GroupMemberService } from './member.service';
 
 @Module({
-  controllers: [MemberController],
-  providers: [MemberService]
+  imports:[],
+  controllers: [GroupMemberController],
+  providers: [GroupMemberService]
 })
-export class MemberModule {}
+export class GroupMemberModule {}

@@ -3,16 +3,16 @@ import { GroupService } from './group.service';
 import { GroupController } from './group.controller';
 import { Group, SchemaGroup } from './group_schema';
 import { MongooseModule } from '@nestjs/mongoose';
-import { GroupMemberController } from './group-member/group-member.controller';
-import { GroupMemberService } from './group-member.service';
-import { MemberModule } from './member/member.module';
+import { GroupMemberController } from './member/member.controller';
+import { GroupMemberService } from './member/member.service';
+import { GroupMemberModule } from './member/member.module';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
         { name: Group.name, schema: SchemaGroup }
     ]),
-    MemberModule
+    GroupMemberModule
   ],
   providers: [GroupService, GroupMemberService],
   controllers: [GroupController, GroupMemberController]

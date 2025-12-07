@@ -19,6 +19,12 @@ export class GroupController {
     @HttpCode(200)
     @Post()
     async createGroup(@Body() groupData: group) {
+        if (!isValidObjectId(groupData.ownerId)) {
+            throw new BadRequestException('Invalid owner ID format');
+        }
+        if (!isValidObjectId(groupData.createdBy)) {
+            throw new BadRequestException('Invalid creator ID format');
+        }
         return this.groupService.createGroup(groupData);
     }
 
@@ -29,12 +35,28 @@ export class GroupController {
     }
 
     @HttpCode(200)
+    @Put("/recoveryGroup/:id")
+    async recoveryGroup(@Param("id") id: string) {
+        return this.groupService.recoveryGroup(id);
+    }
+
+    @HttpCode(200)
     @Delete(':id')
     async deleteGroup(@Param('id') id: string) {
         if (!isValidObjectId(id)) {
             throw new BadRequestException('Invalid group ID format');
         }
         return this.groupService.deleteGroup(id);
+    }
+
+
+    @HttpCode(200)
+    @Delete('/force/:id')
+    async deleteGroupForce(@Param('id') id: string) {
+        if (!isValidObjectId(id)) {
+            throw new BadRequestException('Invalid group ID format');
+        }
+        return this.groupService.deleteGroupForce(id);
     }
     
     
